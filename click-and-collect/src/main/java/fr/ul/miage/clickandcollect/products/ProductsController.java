@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ProductsController {
 
-    private final ProductRepository repo;
+    private final ProductService service;
 
     @GetMapping
-    public Iterable<Product> getAllProducts() {
-        return repo.findAll();
+    public Iterable<Product> getAllProducts(@RequestParam(defaultValue = "0") int page,
+                                            @RequestParam(defaultValue = "50") int size) {
+
+        return service.findPaged(page, size);
     }
 
     @GetMapping("{id}")
