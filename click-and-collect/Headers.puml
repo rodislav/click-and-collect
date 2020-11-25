@@ -1,0 +1,13 @@
+@startuml
+
+client --> api_gateway
+api_gateway --> firewall
+
+firewall --> firewall: clean headers, leave only trusted
+firewall --> proxy: use modified headers
+
+proxy --> proxy: apply rewrite rules
+
+proxy --> backend: use modified request
+
+@enduml
