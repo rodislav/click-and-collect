@@ -12,30 +12,17 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class UserDetailsFactory {
+public class UserDetailsServiceFactory {
 
     private final UsersRepository userRepository;
     private final PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 
-    // https://docs.spring.io/spring-security/site/docs/4.2.15.RELEASE/apidocs/org/springframework/security/core/userdetails/User.html#withDefaultPasswordEncoder--
-    public UserDetailsService build(UsersStorage authStorage) {
-        switch (authStorage) {
-            case IN_MEMORY:
-                return inMemory();
-            case DB:
-                return inDb();
-            default:
-                throw new RuntimeException("Unknown authStorage");
-        }
-    }
-
-    private UserDetailsService inDb() {
-        return new DBUserDetailsService(userRepository, encoder);
+    public UserDetailsService inDb() {
+        return new DBUserDetailsService(userRepository);
     }
 
     public UserDetailsService inMemory() {
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
+        // https://docs.spring.io/spring-security/site/docs/4.2.15.RELEASE/apidocs/org/springframework/security/core/userdetails/User.html#withDefaultPasswordEncoder--
         UserDetails user = User.withUsername("user")
                 .password(encoder.encode("password"))
                 .roles("USER")

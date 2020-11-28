@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import static org.springframework.security.core.userdetails.User.withUsername;
 
@@ -14,14 +13,17 @@ import static org.springframework.security.core.userdetails.User.withUsername;
 public class DBUserDetailsService implements UserDetailsService {
 
     private final UsersRepository repository;
-    private final PasswordEncoder encoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = repository.findByUsername(username).orElseThrow();
+        User user = repository
+                .findByUsername(username)
+                .orElseThrow(AuthFailException::new);
+
+        // https://docs.spring.io/spring-security/site/docs/4.2.15.RELEASE/apidocs/org/springframework/security/core/userdetails/User.html#withDefaultPasswordEncoder--
 
         return withUsername(user.getUsername())
-                .password(encoder.encode(user.getPassword()))
+                .password(user.getPassword())
                 .roles(user.getRole())
                 .build();
     }

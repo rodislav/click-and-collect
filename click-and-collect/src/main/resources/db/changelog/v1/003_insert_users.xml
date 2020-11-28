@@ -5,10 +5,16 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
+<!--
+https://askubuntu.com/a/53852/50752
+
+$ echo -n password | md5sum
+-->
+
     <changeSet id="0" author="rodi">
         <insert tableName="users" schemaName="clickandcollect">
             <column name="username" value="user"/>
-            <column name="password" value="password"/>
+            <column name="password" value="5f4dcc3b5aa765d61d8327deb882cf99"/>
             <column name="role" value="USER"/>
         </insert>
     </changeSet>
@@ -16,7 +22,7 @@
     <changeSet id="1" author="rodi">
         <insert tableName="users" schemaName="clickandcollect">
             <column name="username" value="user2"/>
-            <column name="password" value="password"/>
+            <column name="password" value="5f4dcc3b5aa765d61d8327deb882cf99"/>
             <column name="role" value="USER"/>
         </insert>
     </changeSet>
@@ -24,7 +30,7 @@
     <changeSet id="2" author="rodi">
         <insert tableName="users" schemaName="clickandcollect">
             <column name="username" value="admin"/>
-            <column name="password" value="password"/>
+            <column name="password" value="5f4dcc3b5aa765d61d8327deb882cf99"/>
             <column name="role" value="ADMIN"/>
         </insert>
     </changeSet>
