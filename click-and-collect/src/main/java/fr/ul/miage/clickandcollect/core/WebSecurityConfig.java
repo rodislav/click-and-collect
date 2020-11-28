@@ -1,17 +1,15 @@
 package fr.ul.miage.clickandcollect.core;
 
+import fr.ul.miage.clickandcollect.core.userdetails.SecurityProperties;
+import fr.ul.miage.clickandcollect.core.userdetails.UserDetailsFactory;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.OPTIONS;
@@ -19,9 +17,13 @@ import static org.springframework.http.HttpMethod.OPTIONS;
 // https://spring.io/guides/gs/securing-web/
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    private final SecurityProperties properties;
+    private final UserDetailsFactory detailsFactory;
+
     @Override
-    //noformat
     protected void configure(HttpSecurity http) throws Exception {
         // https://stackoverflow.com/a/14020466/1107450
         // jetbrains://idea/settings?name=Editor--Code+Style
@@ -54,18 +56,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     // https://docs.spring.io/spring-security/site/docs/4.2.15.RELEASE/apidocs/org/springframework/security/core/userdetails/User.html#withDefaultPasswordEncoder--
     public UserDetailsService userDetailsService() {
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
-        UserDetails user = User.withUsername("user")
-                .password(encoder.encode("password"))
-                .roles("USER")
-                .build();
-
-        UserDetails admin = User.withUsername("admin")
-                .password(encoder.encode("password"))
-                .roles("ADMIN")
-                .build();
-
-        return new InMemoryUserDetailsManager(user, admin);
+        return detailsFactory.build(properties.getStorage());
     }
 }
