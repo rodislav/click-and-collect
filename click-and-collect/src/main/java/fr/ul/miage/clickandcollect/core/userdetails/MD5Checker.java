@@ -14,6 +14,7 @@ public class MD5Checker implements PasswordChecker {
     }
 
     @SneakyThrows
+    // https://www.baeldung.com/java-md5
     public boolean areEqual(String source, String target) {
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(target.getBytes());
