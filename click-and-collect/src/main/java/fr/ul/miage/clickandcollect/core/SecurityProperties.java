@@ -1,5 +1,6 @@
-package fr.ul.miage.clickandcollect.core.userdetails;
+package fr.ul.miage.clickandcollect.core;
 
+import fr.ul.miage.clickandcollect.core.userdetails.UsersStorage;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 

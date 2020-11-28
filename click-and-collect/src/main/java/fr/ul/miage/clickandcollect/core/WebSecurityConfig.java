@@ -1,6 +1,5 @@
 package fr.ul.miage.clickandcollect.core;
 
-import fr.ul.miage.clickandcollect.core.userdetails.SecurityProperties;
 import fr.ul.miage.clickandcollect.core.userdetails.UserDetailsFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
