@@ -1,10 +1,10 @@
 package fr.ul.miage.clickandcollect.core;
 
-import fr.ul.miage.clickandcollect.core.userdetails.UsersStorage;
+import fr.ul.miage.clickandcollect.core.auth.UsersStorage;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-import static fr.ul.miage.clickandcollect.core.userdetails.UsersStorage.IN_MEMORY;
+import static fr.ul.miage.clickandcollect.core.auth.UsersStorage.IN_MEMORY;
 
 @Component
 @ConfigurationProperties("app.security")

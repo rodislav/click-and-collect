@@ -1,4 +1,4 @@
-package fr.ul.miage.clickandcollect.core.userdetails;
+package fr.ul.miage.clickandcollect.core.auth;
 
 import fr.ul.miage.clickandcollect.users.UsersRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,8 +1,8 @@
 package fr.ul.miage.clickandcollect.core;
 
-import fr.ul.miage.clickandcollect.core.userdetails.DBAuthProvider;
-import fr.ul.miage.clickandcollect.core.userdetails.MD5Checker;
-import fr.ul.miage.clickandcollect.core.userdetails.UserDetailsServiceFactory;
+import fr.ul.miage.clickandcollect.core.auth.DBAuthProvider;
+import fr.ul.miage.clickandcollect.core.auth.MD5Checker;
+import fr.ul.miage.clickandcollect.core.auth.UserDetailsServiceFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
-import static fr.ul.miage.clickandcollect.core.userdetails.UsersStorage.DB;
+import static fr.ul.miage.clickandcollect.core.auth.UsersStorage.DB;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.OPTIONS;
 

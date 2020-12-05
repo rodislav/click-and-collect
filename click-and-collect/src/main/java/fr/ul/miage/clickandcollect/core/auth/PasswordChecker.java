@@ -1,4 +1,4 @@
-package fr.ul.miage.clickandcollect.core.userdetails;
+package fr.ul.miage.clickandcollect.core.auth;
 
 public interface PasswordChecker {
 
