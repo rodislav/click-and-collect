@@ -1,4 +1,4 @@
-package fr.ul.miage.clickandcollect;
+package tech.becoming.clickandcollect.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

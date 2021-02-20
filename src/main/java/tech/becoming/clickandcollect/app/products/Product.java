@@ -1,4 +1,4 @@
-package fr.ul.miage.clickandcollect.products;
+package tech.becoming.clickandcollect.app.products;
 
 import javax.persistence.*;
 
