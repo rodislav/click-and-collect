@@ -49,23 +49,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(OPTIONS, "/**")
                 .antMatchers(GET, "/favicon.ico");
     }
-
-    @Bean
-    @Override
-    // https://docs.spring.io/spring-security/site/docs/4.2.15.RELEASE/apidocs/org/springframework/security/core/userdetails/User.html#withDefaultPasswordEncoder--
-    public UserDetailsService userDetailsService() {
-        PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-
-        UserDetails user = User.withUsername("user")
-                .password(encoder.encode("password"))
-                .roles("USER")
-                .build();
-
-        UserDetails admin = User.withUsername("admin")
-                .password(encoder.encode("password"))
-                .roles("ADMIN")
-                .build();
-
-        return new InMemoryUserDetailsManager(user, admin);
-    }
 }
